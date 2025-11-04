@@ -64,7 +64,7 @@ const StickyBoard: React.FC = () => {
                             bounds="parent"
                             defaultPosition={{ x: note.x, y: note.y }}
                             onStop={(_e, data) => handleStop(note.id, data)}
-                            handle=".drag-header" // 👈 only drag by header
+                            handle=".drag-header" // only drag by header
                         >
                             <div ref={nodeRef} className="note">
                                 <div className="drag-header">🟨 Drag me</div>
