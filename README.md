@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# Sticky Notes — Interactive Draggable Notes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small, interview-friendly React + TypeScript demo that implements draggable sticky notes with local persistence. Built to showcase component design, state management, drag interactions and simple persistence — ideal to demo during interviews.
 
-Currently, two official plugins are available:
+Live in this repo:
+- Component: [`StickyBoard`](48_Sticky_Note/src/components/Sticky.tsx)  
+- Styles: [48_Sticky_Note/src/components/StickyBoard.css](48_Sticky_Note/src/components/StickyBoard.css)  
+- App entry: [48_Sticky_Note/src/main.tsx](48_Sticky_Note/src/main.tsx)  
+- HTML shell: [48_Sticky_Note/index.html](48_Sticky_Note/index.html)  
+- Tooling: [48_Sticky_Note/package.json](48_Sticky_Note/package.json), [48_Sticky_Note/vite.config.ts](48_Sticky_Note/vite.config.ts)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Quick summary
+- Purpose: Create, drag, edit and persist sticky notes on a board.
+- UX: Click "Add Note" to create a note, drag by the header, type into the textarea. Notes persist to localStorage.
+- Implementation highlights: Controlled React state, per-note positions, react-draggable for drag handling, localStorage for persistence.
 
-## React Compiler
+Why this is interview-friendly
+- Small scope, but touches many topics interviewers ask about:
+  - Component interfaces and TypeScript types (see [`Note` in StickyBoard`](48_Sticky_Note/src/components/Sticky.tsx))
+  - State updates and immutability
+  - DOM refs and integrating third-party libs (react-draggable)
+  - Persistence and lifecycle (useEffect + localStorage)
+  - CSS for layout and UX
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+How to run
+1. Install dependencies:
+   npm install
+2. Start dev server:
+   npm run dev
+3. Open the app at the Vite dev URL shown (default: http://localhost:5173) — entry: [48_Sticky_Note/src/main.tsx](48_Sticky_Note/src/main.tsx)
 
-## Expanding the ESLint configuration
+What you will see (output)
+- A board UI with an "➕ Add Note" button.
+- Each note:
+  - Has a header you can drag (only header is draggable).
+  - Contains an editable <textarea> for note text.
+  - Stores its x/y position and text to localStorage so it reappears after reload.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Real-world use cases
+- Lightweight personal note-taking / sticky board
+- Prototyping collaborative features (add real-time sync)
+- Kanban-lite or idea-capture widgets in dashboards
+- Embeddable widgets for documentation or design tools
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Interview talking points (concise)
+- Why store position inside state vs DOM? (easier persistence, deterministic re-renders)
+- Trade-offs: defaultPosition vs controlled position for Draggable
+- How to make multi-user (server sync + conflict resolution)
+- Accessibility: keyboard-accessible dragging, ARIA considerations
+- Testing: unit tests for state updates; e2e for drag/save flows
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Possible extensions to mention in interview
+- Persist notes server-side and implement optimistic updates
+- Add resizing, color selection, and note deletion
+- Add user auth + per-user boards
+- Add undo/redo and versioning per note
+- Add grid-snapping, collision avoidance, or stacking order (z-index)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Notes for reviewers
+- See the main component implementation: [`StickyBoard`](48_Sticky_Note/src/components/Sticky.tsx)
+- Styles are in: [48_Sticky_Note/src/components/StickyBoard.css](48_Sticky_Note/src/components/StickyBoard.css)
+- The project uses Vite; dev script is in [48_Sticky_Note/package.json](48_Sticky_Note/package.json)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+If you want, I can also:
+- Add README screenshots or an embedded demo GIF
+- Add a short `CONTRIBUTING.md` with extension tasks
+- Add tests for the note add/drag/save flows
