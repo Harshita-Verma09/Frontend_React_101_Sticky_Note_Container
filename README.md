@@ -37,10 +37,10 @@ What you will see (output)
   - Stores its x/y position and text to localStorage so it reappears after reload.
 
 Real-world use cases
-- Lightweight personal note-taking / sticky board
-- Prototyping collaborative features (add real-time sync)
-- Kanban-lite or idea-capture widgets in dashboards
-- Embeddable widgets for documentation or design tools
+- Lightweight personal note-taking / sticky board.
+- Prototyping collaborative features (add real-time sync).
+- Kanban-lite or idea-capture widgets in dashboards.
+- Embeddable widgets for documentation or design tools.
 
 Interview talking points (concise)
 - Why store position inside state vs DOM? (easier persistence, deterministic re-renders)
