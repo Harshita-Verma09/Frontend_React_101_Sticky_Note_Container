@@ -50,11 +50,11 @@ Interview talking points (concise)
 - Testing: unit tests for state updates; e2e for drag/save flows
 
 Possible extensions to mention in interview
-- Persist notes server-side and implement optimistic updates
-- Add resizing, color selection, and note deletion
-- Add user auth + per-user boards
-- Add undo/redo and versioning per note
-- Add grid-snapping, collision avoidance, or stacking order (z-index)
+- Persist notes server-side and implement optimistic updates.
+- Add resizing, color selection, and note deletion.
+- Add user auth + per-user boards.
+- Add undo/redo and versioning per note.
+- Add grid-snapping, collision avoidance, or stacking order (z-index).
 
 Notes for reviewers
 - See the main component implementation: [`StickyBoard`](48_Sticky_Note/src/components/Sticky.tsx)
